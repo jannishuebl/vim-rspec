@@ -159,7 +159,7 @@ function! s:RunSpecMain(type)
   let s:spec = l:spec
 
   " run the spec command
-  let s:cmd  = l:spec." | ".l:filter
+  let s:cmd  = "ssh ". g:rspec_ssh_user ."@". g:rspec_ssh_ip." -p ". g:rspec_ssh_port." \"export PATH=\\$HOME/.rbenv/bin:\\$PATH; eval \\\"\\$(rbenv init -)\\\"; cd example; bundle exec ". substitute(l:spec, expand(g:rspec_local_folder), g:rspec_remote_folder, "") ." \" | ".l:filter
 
   "put the result on a new buffer
   call s:createOutputWin()
